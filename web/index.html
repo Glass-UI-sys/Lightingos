@@ -1,0 +1,28 @@
+<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width"><title>Lighting OS v5.0</title>
+<style>
+body{background:#000;color:#0f0;font-family:monospace;margin:0;padding:15px}
+.header{border:2px solid yellow;padding:10px;text-align:center;color:yellow}
+.menu{border:2px solid #0f0;padding:15px;margin-top:10px}
+.btn{background:#000;border:1px solid #0f0;color:#0f0;padding:10px;width:100%;margin:5px 0;font-family:monospace;font-size:16px}
+.btn:active{background:#0f0;color:#000}
+.apps{border:1px dashed #0f0;padding:10px;margin-top:10px;min-height:40px}
+.vietnam{color:#ff0;border:1px solid #ff0;padding:10px;margin-top:10px}
+input{background:#000;border:1px solid #0f0;color:#0f0;padding:10px;width:75%}
+</style></head><body>
+<div class="header"><h2>⚡ LIGHTING OS v5.0 ⚡</h2><p>From Nellore -> Quy Nhon Vietnam 🇻🇳</p><p id="time"></p></div>
+<div class="menu">
+<button class="btn" onclick="showApps()">1. Show Apps</button>
+<div><input id="appName" placeholder="New app name"><button class="btn" onclick="addApp()" style="width:22%">Add</button></div>
+<button class="btn" onclick="vietnam()">3. Vietnam Server</button>
+<div id="output" class="apps">-- YOUR ADDED OPTIONS --<br><span id="list"></span></div>
+<div id="vn" class="vietnam" style="display:none">🇻🇳 VIETNAM SERVER RUNNING<br>FPT AI Campus - Quy Nhon<br>Platform: ACTIVE<br>Founder: Surya</div>
+</div>
+<script>
+let apps = JSON.parse(localStorage.getItem('lightingApps')||'["my_software"]');
+function render(){document.getElementById('list').innerHTML=apps.join('<br>')}
+function showApps(){render();document.getElementById('output').style.display='block'}
+function addApp(){let n=document.getElementById('appName').value.trim();if(n){apps.push(n);localStorage.setItem('lightingApps',JSON.stringify(apps));render();document.getElementById('appName').value='';alert('ADDED: '+n)}}
+function vietnam(){document.getElementById('vn').style.display='block'}
+setInterval(()=>document.getElementById('time').innerText=new Date().toLocaleString(),1000);
+render();
+</script></body></html>
